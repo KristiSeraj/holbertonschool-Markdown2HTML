@@ -15,6 +15,7 @@ if __name__ == "__main__":
         with open(argv[2], "a") as nw:
             for line in f:
                 count_tag = line.count("#")
-                new_l = line.strip("# ")
-                a = new_l.rstrip('\n')
-                nw.write(f"<h{count_tag}>{a}</h{count_tag}> \n")
+                if count_tag > 0 and count_tag <= 6:
+                    new_l = line.strip("# ")
+                    a = new_l.rstrip('\n')
+                    nw.write(f"<h{count_tag}>{a}</h{count_tag}> \n")
