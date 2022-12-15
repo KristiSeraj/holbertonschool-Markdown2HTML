@@ -4,7 +4,9 @@
 if __name__ == "__main__":
     import os
     from sys import argv
-
+    
+    if len(argv) == 0:
+        exit(0)
     if len(argv) != 3:
         print("Usage: ./markdown2html.py README.md README.html")
         exit(1)
