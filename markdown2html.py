@@ -3,7 +3,7 @@
 
 if __name__ == "__main__":
     import os
-    from sys import argv
+    from sys import argv, stderr
     
     if len(argv) != 3:
         stderr.write("Usage: ./markdown2html.py README.md README.html")
