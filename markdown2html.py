@@ -6,10 +6,10 @@ if __name__ == "__main__":
     from sys import argv, stderr
     
     if len(argv) != 3:
-        stderr.write("Usage: ./markdown2html.py README.md README.html")
+        stderr.write("Usage: ./markdown2html.py README.md README.html\n")
         exit(1)
     if not os.path.exists(argv[1]):
-        stderr.write(f"Missing {argv[1]}")
+        stderr.write(f"Missing {argv[1]}\n")
         exit(1)
     print(end="")
     exit(0)
