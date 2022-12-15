@@ -5,7 +5,7 @@ if __name__ == "__main__":
     import os
     from sys import argv
 
-    if len(argv) != 3:
+    if len(argv) < 2:
         print("Usage: ./markdown2html.py README.md README.html")
         exit(1)
     if not os.path.exists(argv[1]):
