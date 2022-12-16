@@ -11,8 +11,6 @@ if __name__ == "__main__":
     if not os.path.exists(argv[1]):
         stderr.write(f"Missing {argv[1]}\n")
         exit(1)
-    print(end="")
-    exit(0)
     with open(argv[1], "r") as f:
         with open(argv[2], "a") as nw:
             for line in f:
@@ -21,3 +19,5 @@ if __name__ == "__main__":
                     new_l = line.strip("# ")
                     a = new_l.rstrip('\n')
                     nw.write(f"<h{count_tag}>{a}</h{count_tag}> \n")
+    print(end="")
+    exit(0)
