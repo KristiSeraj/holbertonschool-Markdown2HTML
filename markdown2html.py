@@ -4,7 +4,7 @@
 if __name__ == "__main__":
     import os
     from sys import argv, stderr
-    
+
     if len(argv) != 3:
         stderr.write("Usage: ./markdown2html.py README.md README.html\n")
         exit(1)
@@ -13,11 +13,25 @@ if __name__ == "__main__":
         exit(1)
     with open(argv[1], "r") as f:
         with open(argv[2], "a") as nw:
+            line_count = 0
             for line in f:
-                count_tag = line.count("#")
-                if count_tag > 0 and count_tag <= 6:
-                    new_l = line.strip("# ")
-                    a = new_l.rstrip('\n')
-                    nw.write(f"<h{count_tag}>{a}</h{count_tag}> \n")
+                if line.startswith("#") is True:
+                    count_tag = line.count("#")
+                    if count_tag > 0 and count_tag <= 6:
+                        if line_count > 0:
+                            nw.write("</ul>\n")
+                        new_l = line.strip("# ")
+                        a = new_l.rstrip('\n')
+                        nw.write(f"<h{count_tag}>{a}</h{count_tag}> \n")
+                        line_count = 0
+                if line.startswith("-") is True:
+                    if line_count == 0:
+                        nw.write("<ul>\n")
+                    list_el = line.strip("- ")
+                    n_list_el = list_el.rstrip('\n')
+                    nw.write(f"<li>{n_list_el}</li>\n")
+                    line_count += 1
+            if line_count > 0:
+                nw.write("</ul>\n")
     print(end="")
     exit(0)
