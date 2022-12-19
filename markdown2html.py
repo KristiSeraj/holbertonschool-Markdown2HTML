@@ -4,6 +4,7 @@
 if __name__ == "__main__":
     import os
     from sys import argv, stderr
+    import re
 
     if len(argv) != 3:
         stderr.write("Usage: ./markdown2html.py README.md README.html\n")
@@ -42,6 +43,9 @@ if __name__ == "__main__":
                     n_ord_li = ord_li.rstrip('\n')
                     nw.write(f"<li>{n_ord_li}</li>\n")
                     ord_line_c += 1
+                if re.match("^[a-zA-Z]", line) is not None:
+                    n_line = line.rstrip('\n')
+                    nw.write(f"<p>{n_line}</p>\n")
             if ord_line_c > 0:
                 nw.write("</ol>\n")
             if line_count > 0:
